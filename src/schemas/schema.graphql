@@ -1,20 +1,20 @@
 "Data for an example IOU payment"
-type ExampleIOUPaymentData {
-  "The name of the IOU payer entered by the shopper"
+type PayPalPaymentData {
+  "The name of the PayPal payer entered by the shopper"
   fullName: String!
 }
 
-extend union PaymentData = ExampleIOUPaymentData
+extend union PaymentData = PayPalPaymentData
 
-"Data for an example IOU payment method"
-type ExampleIOUPaymentMethodData {
-  "Example"
+"Data for an PayPal payment method"
+type PayPalPaymentMethodData {
+  "PayPal"
   example: String!
 }
 
-extend union PaymentMethodData = ExampleIOUPaymentMethodData
+extend union PaymentMethodData = PayPalPaymentMethodData
 
 extend enum PaymentMethodName {
-  "IOU Example payment method"
-  iou_example
+  "PayPal payment method"
+  paypal_example
 }

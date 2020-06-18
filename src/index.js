@@ -1,10 +1,10 @@
 import pkg from "../package.json";
 import i18n from "./i18n/index.js";
 import schemas from "./schemas/index.js";
-import exampleCapturePayment from "./util/exampleCapturePayment.js";
-import exampleCreateAuthorizedPayment from "./util/exampleCreateAuthorizedPayment.js";
-import exampleCreateRefund from "./util/exampleCreateRefund.js";
-import exampleListRefunds from "./util/exampleListRefunds.js";
+import capturePayment from "./util/capturePayment.js";
+import createAuthorizedPayment from "./util/createAuthorizedPayment.js";
+import createRefund from "./util/createRefund.js";
+import listRefunds from "./util/listRefunds.js";
 import startup from "./startup.js";
 
 /**
@@ -14,8 +14,8 @@ import startup from "./startup.js";
  */
 export default async function register(app) {
   await app.registerPlugin({
-    label: "Example Payments",
-    name: "payments-example",
+    label: "PayPal Payments",
+    name: "payments-paypal",
     version: pkg.version,
     i18n,
     graphQL: {
@@ -25,14 +25,14 @@ export default async function register(app) {
       startup: [startup]
     },
     paymentMethods: [{
-      name: "iou_example",
+      name: "paypal",
       canRefund: true,
-      displayName: "IOU Example",
+      displayName: "PayPal",
       functions: {
-        capturePayment: exampleCapturePayment,
-        createAuthorizedPayment: exampleCreateAuthorizedPayment,
-        createRefund: exampleCreateRefund,
-        listRefunds: exampleListRefunds
+        capturePayment,
+        createAuthorizedPayment,
+        createRefund,
+        listRefunds
       }
     }]
   });
